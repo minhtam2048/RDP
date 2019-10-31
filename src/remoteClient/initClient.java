@@ -61,7 +61,7 @@ public class initClient {
             	new ServerDelegate(clientSocket, robot);
      	
             } catch (AWTException e) {
-            	System.out.println(e.getMessage());
+            	e.printStackTrace();
 		}
            
 			

@@ -75,7 +75,7 @@ class ClientCreation extends Thread {
 				
 				image = ImageIO.read(new ByteArrayInputStream(img));
 					
-			    image = (BufferedImage) image.getScaledInstance(clientPanel.getWidth(), clientPanel.getHeight(), Image.SCALE_FAST);
+			    image =  (BufferedImage) image.getScaledInstance(clientPanel.getWidth(), clientPanel.getHeight(), Image.SCALE_FAST);
 			   
 				Graphics graphics = clientPanel.getGraphics();
 				graphics.drawImage(image, 0, 0, clientPanel.getWidth(), clientPanel.getHeight(), clientPanel);
@@ -85,7 +85,7 @@ class ClientCreation extends Thread {
 				Thread.sleep(30);
 		   }
 	   } catch (Exception e) {
-		   System.out.println(e.getMessage());
+		   e.printStackTrace();
 	}
 	   
 	   

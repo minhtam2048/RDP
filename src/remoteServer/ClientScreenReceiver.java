@@ -54,7 +54,7 @@ class ClientScreenReceiver extends Thread {
 					   Thread.sleep(30);
 					}
 				} catch (Exception e) {
-					System.out.println(e.getMessage());
+					e.printStackTrace();
 				}
 				
 				
