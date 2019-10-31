@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class initClient {
@@ -25,6 +26,9 @@ public class initClient {
 		
 		Robot robot = null;
 		Rectangle rectangle = null;
+//		String width = "";
+//		String height = "";
+		DataOutputStream configGraphicStream = null;
 		
 		try {
 			System.out.println("Connecting to server");
@@ -34,23 +38,37 @@ public class initClient {
 			GraphicsEnvironment gEnv = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			GraphicsDevice gDev = gEnv.getDefaultScreenDevice();
 			
-			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-			rectangle = new Rectangle(dim);
-			robot = new Robot(gDev);
+            
+            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+            Rectangle rect = new Rectangle(dim);
+            
+//            width = "" + (int) rect.getWidth();
+//            height = "" + (int) rect.getHeight();
+            rectangle = rect;
+            
+            try {
+            	//ve giao dien phia client
+    			drawGUI();
+            	robot = new Robot(gDev);
+            
+            	configGraphicStream = new DataOutputStream(clientSocket.getOutputStream());
+
+	 
+            	//gui anh chup toi server
+            	new ScreenSpyer(clientSocket, robot, rectangle);
+            			
+            	// Nhan lenh tu server va thuc thi 
+            	new ServerDelegate(clientSocket, robot);
+     	
+            } catch (AWTException e) {
+            	System.out.println(e.getMessage());
+		}
+           
 			
-			//ve giao dien phia client
-			drawGUI();
 			
-			//gui anh chup toi server
-			new ScreenSpyer(clientSocket, robot, rectangle);
-			
-			// Nhan lenh tu server va thuc thi 
-			new ServerDelegate(clientSocket, robot);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (AWTException e) {
 			e.printStackTrace();
 		}
 	}

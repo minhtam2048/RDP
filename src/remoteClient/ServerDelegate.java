@@ -38,7 +38,7 @@ class ServerDelegate extends Thread {
                  break;
                  case -4:
                      robot.keyRelease(scanner.nextInt());
-                 break;
+                 break; 	 
                  case -5:
                      robot.mouseMove(scanner.nextInt(), scanner.nextInt());
                  break;

@@ -24,12 +24,13 @@ public class initServer {
 		
 		try {
 			ServerSocket serverSocket = new ServerSocket(port);
+			Socket clientSocket = serverSocket.accept();
+			System.out.println("Connected");
+
 			//vẽ giao diện server
 			drawGUI();
 			
 			while(true) {
-				Socket clientSocket = serverSocket.accept();
-				System.out.println("Connected");
 				new ClientCreation(clientSocket, dpane);
 			}
 		} catch (IOException e) {

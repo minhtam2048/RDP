@@ -18,12 +18,18 @@ class ClientCommandSender implements KeyListener, MouseMotionListener, MouseList
 	private JPanel cPanel = null;
 	private PrintWriter writer = null;
 	private Rectangle clientScreenDim = null;
+	private boolean dragging = false;
+	double currentX, currentY = -1;
+	private String width ;
+	private String height;
 	
 	public ClientCommandSender(Socket s, JPanel p, Rectangle r) {
 		cSocket = s;
 		cPanel = p;
 		clientScreenDim = r;
 		
+//		float widthNum =  ;
+				
 		cPanel.addKeyListener(this);
 		cPanel.addMouseListener(this);
 		cPanel.addMouseMotionListener(this);
@@ -35,7 +41,21 @@ class ClientCommandSender implements KeyListener, MouseMotionListener, MouseList
 		}
 	}
 	
+	@Override
 	public void mouseDragged(MouseEvent e) {
+		dragging = true;
+		double xScale = clientScreenDim.getWidth() / cPanel.getWidth();
+		System.out.println("xScale: " + xScale);
+		double yScale = clientScreenDim.getHeight() / cPanel.getHeight();
+		System.out.println("yScale: " + yScale);
+		System.out.println("Mouse Dragged to " + xScale+ "---" +yScale);
+		currentX = xScale;
+		currentY = yScale;
+		if(dragging) {
+			writer.println(EnumCommands.DRAG_MOUSE.getAbbrev());
+		}
+		
+		
 	}
 	
 	public void mouseMoved(MouseEvent e) {
@@ -63,6 +83,7 @@ class ClientCommandSender implements KeyListener, MouseMotionListener, MouseList
 	}
 	
 	public void mouseReleased(MouseEvent e) {
+		dragging = false;
 		System.out.println("Mouse Released");
         writer.println(EnumCommands.RELEASE_MOUSE.getAbbrev());
         int button = e.getButton();
