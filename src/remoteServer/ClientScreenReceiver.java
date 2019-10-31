@@ -35,15 +35,13 @@ class ClientScreenReceiver extends Thread {
 					is.read(sizeInByte);
 					int length = ByteBuffer.wrap(sizeInByte).asIntBuffer().get();
 					
-					try {
-						byte[] img = new byte[length];
-						is.readNBytes(img, 0, img.length);
+				
+				    byte[] img = new byte[length];
+					is.readNBytes(img, 0, img.length);
 						
-						image = ImageIO.read(new ByteArrayInputStream(img));
+					image = ImageIO.read(new ByteArrayInputStream(img));
 
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+					
 					
 					if( image != null) {
 						

@@ -16,19 +16,17 @@ import java.io.IOException;
 public class initClient {
 	Socket clientSocket = null;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NumberFormatException, AWTException {
 		String ip = JOptionPane.showInputDialog("Nhap dia chi IP cua server");
 		String port = JOptionPane.showInputDialog("Nhap cong ket noi");
 	    new initClient().initialize(ip, Integer.parseInt(port));
 	}
 	
-	public void initialize(String ip, int port) {
+	public void initialize(String ip, int port) throws AWTException {
 		
 		Robot robot = null;
 		Rectangle rectangle = null;
-//		String width = "";
-//		String height = "";
-		DataOutputStream configGraphicStream = null;
+
 		
 		try {
 			System.out.println("Connecting to server");
@@ -40,16 +38,15 @@ public class initClient {
 			
             
             Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-            Rectangle rect = new Rectangle(dim);
+            rectangle = new Rectangle(dim);
             
 //            width = "" + (int) rect.getWidth();
 //            height = "" + (int) rect.getHeight();
-            rectangle = rect;
             
-            try {
-            	//ve giao dien phia client
-    			drawGUI();
-            	robot = new Robot(gDev);
+            robot = new Robot(gDev);
+            //ve giao dien phia client
+    		drawGUI();
+            	
             
 //            	configGraphicStream = new DataOutputStream(clientSocket.getOutputStream());
 
@@ -60,9 +57,7 @@ public class initClient {
             	// Nhan lenh tu server va thuc thi 
             	new ServerDelegate(clientSocket, robot);
      	
-            } catch (AWTException e) {
-            	e.printStackTrace();
-		}
+          
            
 			
 			
