@@ -51,7 +51,7 @@ public class initClient {
     			drawGUI();
             	robot = new Robot(gDev);
             
-            	configGraphicStream = new DataOutputStream(clientSocket.getOutputStream());
+//            	configGraphicStream = new DataOutputStream(clientSocket.getOutputStream());
 
 	 
             	//gui anh chup toi server
