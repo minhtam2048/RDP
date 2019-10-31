@@ -67,7 +67,8 @@ class ClientCreation extends Thread {
 			    BufferedImage image = null;
 
 			    byte[] sizeInByte = new byte[64];
-			    is.read(sizeInByte);
+			    is.read(sizeInByte, 0, sizeInByte.length);
+			    
 				int length = ByteBuffer.wrap(sizeInByte).asIntBuffer().get();
 				byte[] img = new byte[length];
 				configGraphicStream.readFully(img);
