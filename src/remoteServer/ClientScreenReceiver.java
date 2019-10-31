@@ -25,11 +25,11 @@ class ClientScreenReceiver extends Thread {
 	@Override
 	public void run() {
 		
-		
+		BufferedImage image = null;
+
 			while(continueLoop) {
 				
 				try {
-					BufferedImage image = null;
 
 					byte[] sizeInByte = new byte[64];
 					is.read(sizeInByte);
@@ -42,7 +42,7 @@ class ClientScreenReceiver extends Thread {
 						image = ImageIO.read(new ByteArrayInputStream(img));
 
 					} catch (Exception e) {
-						System.out.println(e.getMessage());
+						e.printStackTrace();
 					}
 					
 					if( image != null) {
