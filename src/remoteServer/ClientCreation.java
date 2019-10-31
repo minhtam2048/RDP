@@ -62,10 +62,10 @@ class ClientCreation extends Thread {
 		   drawGUI();
 		   
 		   InputStream is = clientSocket.getInputStream();
-		   BufferedImage image = null;
 		   
 		   while(continueLoop) {
-			   
+			    BufferedImage image = null;
+
 			    byte[] sizeInByte = new byte[64];
 			    is.read(sizeInByte);
 				int length = ByteBuffer.wrap(sizeInByte).asIntBuffer().get();

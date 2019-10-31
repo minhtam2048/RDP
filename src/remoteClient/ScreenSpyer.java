@@ -36,17 +36,16 @@ class ScreenSpyer extends Thread {
 				
 			    OutputStream os = clientSocket.getOutputStream();
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				ImageIO.write(image, "jpeg", baos);
-				
 				byte[] size = ByteBuffer.allocate(4).putInt(baos.size()).array();
 				os.write(size);
+				ImageIO.write(image, "jpeg", baos);
 				os.write(baos.toByteArray());
 				os.flush();
 				baos.flush();
 				
 			} catch(IOException e) {
 				e.printStackTrace();
-				System.out.println(e.getMessage());
+				e.printStackTrace();
 				continueLoop = false;
 			}
 			
