@@ -30,9 +30,9 @@ public class initServer {
 			//vẽ giao diện server
 			drawGUI();
 			
-			while(true) {
-				new ClientCreation(clientSocket, dpane);
-			}
+		
+			new ClientCreation(clientSocket, dpane);
+			
 		} catch (IOException e) {
 			// TODO: handle exception
 			e.printStackTrace();

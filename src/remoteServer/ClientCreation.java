@@ -71,13 +71,16 @@ class ClientCreation extends Thread {
 				int length = ByteBuffer.wrap(sizeInByte).asIntBuffer().get();
 				byte[] img = new byte[length];
 				configGraphicStream.readFully(img);
-					
+				
+				
 				image = ImageIO.read(new ByteArrayInputStream(img));
 					
 			    image = (BufferedImage) image.getScaledInstance(clientPanel.getWidth(), clientPanel.getHeight(), Image.SCALE_FAST);
+			   
 				Graphics graphics = clientPanel.getGraphics();
 				graphics.drawImage(image, 0, 0, clientPanel.getWidth(), clientPanel.getHeight(), clientPanel);
-
+				image.flush();
+				 
 				System.out.println("Receiving image");
 				Thread.sleep(30);
 		   }

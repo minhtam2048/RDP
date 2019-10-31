@@ -42,6 +42,7 @@ class ScreenSpyer extends Thread {
 				os.write(size);
 				os.write(baos.toByteArray());
 				os.flush();
+				baos.flush();
 				
 			} catch(IOException e) {
 				e.printStackTrace();
